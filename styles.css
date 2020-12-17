@@ -1,0 +1,182 @@
+/layout
+$leftWidth: 40%;
+
+//navigation
+$hamWidth: 35px;
+$hamHeight: 3px;
+$hamSpacing: 8px;
+$menuTransition: .2s;
+
+//general
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 21px;
+  font-family: 'Open Sans';
+}
+
+html, body {
+  height: 100%;
+} 
+
+h1 {
+  font-family: 'Raleway';
+  font-size: 2.7em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  color: #222; 
+  margin-bottom: .3em;
+}
+
+p {
+  font-weight: 200;
+  color: #525252;
+} 
+
+//reusable classes
+.fl {
+  float: left;
+  margin: 20px;
+}
+
+.fr { 
+  float: right;
+  margin: 20px;
+}
+
+//specific
+.hero {
+  width: $leftWidth;
+  height: 100%;
+  position: fixed;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%,rgba(0,0,0,0) 30%), url(http://fillmurray.com/1050/1050);  
+  background-size: cover;
+  background-position: center 30%;
+  .hamb-wrap {
+    height: 30px;
+    width: $hamWidth + 5;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .hamb {
+    height: $hamHeight;
+    width: $hamWidth;
+    background: #fff;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    transition: $menuTransition;
+    border-radius: 10% 10% 10% 10% / 40% 40% 40% 40%;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      background: #fff;
+      height: $hamHeight;
+      width: 100%;
+      transition: $menuTransition;
+      border-radius: 10% 10% 10% 10% / 50% 50% 50% 50%;
+    } 
+    &:before {
+      top: $hamSpacing;
+    }
+    &:after {
+      top: -$hamSpacing;
+    }
+  }
+  .active {
+  background: none;
+  transition: $menuTransition;
+    &:before, &:after {
+      transition: $menuTransition;
+      top: 0;
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg); 
+    } 
+  }
+  .logo {
+    color: white;
+    font-family: 'Over the Rainbow';
+    font-size: 1.9em;
+    margin: 0 0 0 $hamWidth + 50px;
+    line-height: 2;
+  }
+  nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding-top: 60px;
+    font-family: 'Raleway';
+    font-size: 2em;
+    display: none;
+    background: rgba(0, 0, 0, 0.8);
+    ul {
+      margin: 0 0 0 25px;
+      padding: 0;
+    }
+    li {
+      list-style-type: none;
+      margin: 25px 0;
+      position: relative;
+    }
+    a {
+      text-decoration: none;
+      color: #fff;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.content { 
+  width: 100% - $leftWidth;
+  min-height: 100%;
+  margin-left: $leftWidth;
+  padding: 4em 1.5em;
+  overflow: hidden;
+}
+
+@media (max-width: 768px){ 
+  //general
+  html {
+    font-size: 18px;
+  }
+ 
+  //specific
+  .hero {
+    height: 350px;
+    width: 100%; 
+    display: block;
+    position: relative;
+    padding: 1px;
+    nav {
+      font-size: 1.7em;
+    }
+  }
+  .content {
+    margin-left: 0;
+    padding-top: 0;
+    width: 100%;
+  }
+}
+
+@media(max-width: 480px) {
+  //reusable classes
+  img.fl, img.fr {
+    float: none;
+    margin: 10px 0;
+    width: 100%;
+    height: auto;
+  }
+} 
